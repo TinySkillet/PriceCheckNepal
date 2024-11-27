@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:price_check_np/pages/login_page.dart';
+// import 'package:price_check_np/pages/login_page.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -7,7 +8,7 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).primaryColorDark,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,7 +25,7 @@ class LandingPage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 30),
+            margin: const EdgeInsets.only(bottom: 20),
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -35,7 +36,7 @@ class LandingPage extends StatelessWidget {
                   child: Text(
                     "\"Your Smart Laptop Price Comparison Tool\"",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).primaryColorLight,
                       fontFamily: "Kadwa",
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class LandingPage extends StatelessWidget {
                 Text(
                   "Compare and Save on the Best Laptop Deals!",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).primaryColorLight,
                     fontFamily: "Kadwa",
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -60,14 +61,14 @@ class LandingPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   label: Text(
                     "Get Started",
+                    textAlign: TextAlign.start,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).primaryColorLight,
                       fontFamily: "Kadwa",
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -76,7 +77,7 @@ class LandingPage extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_right_alt_rounded,
                     size: 40,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).primaryColorLight,
                   ),
                 ),
               ],

@@ -78,6 +78,12 @@ flutter:
       fonts:
         - asset: assets/fonts/Kadwa-Regular.ttf
         - asset: assets/fonts/Kadwa-Bold.ttf
-          style: normal
+        
+    - family: Noto Sans
+      fonts: 
+        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf
+        - asset: assets/fonts/NotoSans-Italic.ttf
+          style: italic
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
