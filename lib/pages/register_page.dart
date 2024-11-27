@@ -3,21 +3,21 @@ import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
-import 'package:price_check_np/pages/register_page.dart';
+import 'package:price_check_np/pages/login_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  // email and password text controllers
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  bool isRemembered = false; // the state of the checkbox
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +30,10 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title text
-          const SizedBox(
-            height: 50,
-          ),
           Container(
             padding: const EdgeInsets.only(left: 50),
             child: Text(
-              "Login",
+              "Signup",
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontFamily: "Noto Sans",
@@ -50,11 +46,10 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 10,
           ),
-          // Subtitle text
           Container(
             padding: const EdgeInsets.only(left: 50),
             child: Text(
-              "Glad you're back!",
+              "Just some details to get you in!",
               style: TextStyle(
                 fontFamily: "Noto Sans",
                 fontSize: 16,
@@ -65,7 +60,16 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 50,
           ),
-          // Email text field
+          // full name field
+          MyTextField(
+            controller: _fullNameController,
+            hintText: "Full Name",
+            obsecureText: false,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          // full name field
           MyTextField(
             controller: _emailController,
             hintText: "Email",
@@ -74,84 +78,29 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 20,
           ),
-          // Password text field
           MyTextField(
             controller: _passwordController,
             hintText: "Password",
             obsecureText: true,
           ),
           const SizedBox(
-            height: 15,
-          ),
-          // Remember Me checkbox
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(
-                  value: isRemembered,
-                  splashRadius: 10.0,
-                  activeColor: Theme.of(context).primaryColorDark,
-                  checkColor: Theme.of(context).primaryColorLight,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isRemembered = value ?? false;
-                    });
-                  },
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isRemembered = !isRemembered;
-                    });
-                  },
-                  child: const Text(
-                    "Remember Me",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontFamily: "Noto Sans",
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
             height: 20,
           ),
-          // login button
+          MyTextField(
+            controller: _confirmPasswordController,
+            hintText: "Confirm password",
+            obsecureText: true,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
           MyButton(
             onPressed: () {},
-            buttontext: "Login",
+            buttontext: "Signup",
           ),
           const SizedBox(
-            height: 5,
+            height: 30,
           ),
-          // Forgot password row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton.icon(
-                onPressed: () {},
-                label: Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                ),
-                style: TextButton.styleFrom(
-                  splashFactory: NoSplash.splashFactory,
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(
-            height: 5,
-          ),
-          // continue with google button
           MyButton(
             onPressed: () {},
             buttontext: "Continue with Google",
@@ -161,7 +110,6 @@ class _LoginPageState extends State<LoginPage> {
               width: 22,
             ),
           ),
-          // dont have an account row
           const SizedBox(
             height: 20,
           ),
@@ -169,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Don't have an account?  ",
+                "Already have an account?  ",
                 style: TextStyle(
                   fontFamily: "Noto Sans",
                   fontSize: 14,
@@ -177,12 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               MyTile(
-                tiletext: "Signup",
+                tiletext: "Login",
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const RegisterPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
               ),
