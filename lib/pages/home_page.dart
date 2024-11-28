@@ -20,7 +20,12 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [MyButton(onPressed: logout, buttontext: "Logout")],
+        children: [
+          MyButton(
+            onPressed: logout,
+            buttontext: "Logout",
+          ),
+        ],
       ),
     );
   }

@@ -70,11 +70,8 @@ class _LoginPageState extends State<LoginPage> {
         case 'invalid-email':
           errorMessage = 'Invalid email! Please enter a valid email address';
           break;
-        case 'user-not-found':
-          errorMessage = 'User with the email does not exist';
-          break;
-        case 'wrong-password':
-          errorMessage = 'Password does not match!';
+        case 'invalid-credential':
+          errorMessage = 'Email or password does not match!';
           break;
         case 'too-many-requests':
           errorMessage = 'Too many requests! Please try again later!';
