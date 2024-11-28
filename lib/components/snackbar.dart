@@ -5,6 +5,7 @@ class MySnackbar extends SnackBar {
     super.key,
     required String message,
   }) : super(
+          duration: const Duration(seconds: 1),
           content: Text(
             message,
             style: const TextStyle(
@@ -12,7 +13,8 @@ class MySnackbar extends SnackBar {
               fontSize: 16,
             ),
           ),
-          backgroundColor: Colors.black, // Replace with your desired color
+          backgroundColor: const Color.fromRGBO(
+              93, 88, 88, 1.0), // Replace with your desired color
           showCloseIcon: true,
           closeIconColor: Colors.white, // Replace with your desired color
         );

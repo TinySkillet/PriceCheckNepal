@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:price_check_np/auth/auth_service.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
+import 'package:price_check_np/components/snackbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,7 +23,12 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           MyButton(
-            onPressed: logout,
+            onPressed: () {
+              Navigator.pop(context);
+              logout();
+              ScaffoldMessenger.of(context).showSnackBar(
+                  MySnackbar(message: "Logged out successfully!"));
+            },
             buttontext: "Logout",
           ),
         ],

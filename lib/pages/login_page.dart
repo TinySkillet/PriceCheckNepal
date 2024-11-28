@@ -53,9 +53,10 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       // on successful login, navigate to another page or show a success message
-      ScaffoldMessenger.of(context).showSnackBar(MySnackbar(message: "Login"));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(MySnackbar(message: "Logged in successfully!"));
 
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
       );
