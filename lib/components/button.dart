@@ -26,7 +26,7 @@ class MyButton extends StatelessWidget {
                   BorderRadius.circular(12), // Specify border radius here
             ),
             padding: const EdgeInsets.symmetric(
-              vertical: 10,
+              vertical: 15,
             )),
         label: Text(
           buttontext,

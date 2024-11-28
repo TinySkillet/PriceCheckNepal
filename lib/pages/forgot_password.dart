@@ -3,21 +3,13 @@ import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
-import 'package:price_check_np/pages/login_page.dart';
+import 'package:price_check_np/pages/register_page.dart';
+import 'package:price_check_np/pages/send_code.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class ForgotPaswordPage extends StatelessWidget {
+  ForgotPaswordPage({super.key});
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +17,21 @@ class _RegisterPageState extends State<RegisterPage> {
       resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).primaryColorLight,
       appBar: const MyAppBar(
-        isBackBtnRequired: false,
+        isBackBtnRequired: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Title text
+            const SizedBox(
+              height: 50,
+            ),
             Container(
               padding: const EdgeInsets.only(left: 50),
               child: Text(
-                "Signup",
+                "Forgot \nPassword ?",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: "Noto Sans",
@@ -48,10 +44,11 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 10,
             ),
+            // Subtitle text
             Container(
               padding: const EdgeInsets.only(left: 50),
               child: Text(
-                "Just some details to get you in!",
+                "Please enter your email address to \nget the verification code!",
                 style: TextStyle(
                   fontFamily: "Noto Sans",
                   fontSize: 16,
@@ -60,57 +57,23 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 25,
             ),
-            // full name field
-            MyTextField(
-              controller: _fullNameController,
-              hintText: "Full Name",
-              obsecureText: false,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            // full name field
+            // Email text field
             MyTextField(
               controller: _emailController,
-              hintText: "Email",
+              hintText: "Enter Email Address",
               obsecureText: false,
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            MyTextField(
-              controller: _passwordController,
-              hintText: "Password",
-              obsecureText: true,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            MyTextField(
-              controller: _confirmPasswordController,
-              hintText: "Confirm password",
-              obsecureText: true,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
             MyButton(
-              onPressed: () {},
-              buttontext: "Signup",
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            MyButton(
-              onPressed: () {},
-              buttontext: "Continue with Google",
-              buttonicon: Image.asset(
-                "assets/images/google_icon.png",
-                height: 22,
-                width: 22,
-              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SendCodePage()),
+                );
+              },
+              buttontext: "Submit",
             ),
             const SizedBox(
               height: 20,
@@ -119,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Already have an account?  ",
+                  "Don't have an account?  ",
                   style: TextStyle(
                     fontFamily: "Noto Sans",
                     fontSize: 14,
@@ -127,13 +90,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 MyTile(
-                  tiletext: "Login",
+                  tiletext: "Signup",
                   onPressed: () {
                     Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                          builder: (context) => const RegisterPage()),
                     );
                   },
                 ),
