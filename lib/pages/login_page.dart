@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:price_check_np/auth/auth_service.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
+import 'package:price_check_np/components/snackbar.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
 import 'package:price_check_np/pages/forgot_password.dart';
+import 'package:price_check_np/pages/home_page.dart';
 import 'package:price_check_np/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -19,6 +23,100 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool isRemembered = false; // the state of the checkbox
+
+  void login(BuildContext context) async {
+    // validate the email and password fields
+    if (_emailController.text.trim().isEmpty ||
+        _passwordController.text.trim().isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Error'),
+          content: const Text('Please enter both email and password!'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    final authService = AuthService();
+    try {
+      // Attempt to sign in
+      await authService.signInWithEmailPassword(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+      );
+
+      // on successful login, navigate to another page or show a success message
+      ScaffoldMessenger.of(context).showSnackBar(MySnackbar(message: "Login"));
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      // show error dialog
+      String errorMessage;
+      switch (e.code) {
+        // case 'channel-error':
+        //   errorMessage =
+        //       'Network error! Please check your internet connection.';
+
+        case 'invalid-email':
+          errorMessage = 'Invalid email! Please enter a valid email address';
+          break;
+        case 'user-not-found':
+          errorMessage = 'User with the email does not exist';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Password does not match!';
+          break;
+        case 'too-many-requests':
+          errorMessage = 'Too many requests! Please try again later!';
+          break;
+        case 'network-request-failed':
+          errorMessage =
+              'Network error! Please check your internet connection.';
+          break;
+        default:
+          errorMessage = 'An unexpected error occurred: ${e.code}';
+      }
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Login Failed'),
+          content: Text(errorMessage),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      // handle other exceptions
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Error'),
+          content: Text('An error occurred: ${e.toString()}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             // login button
             MyButton(
-              onPressed: () {},
+              onPressed: () => login(context),
               buttontext: "Login",
             ),
             const SizedBox(

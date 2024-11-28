@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:price_check_np/pages/landing_page.dart';
+import 'package:price_check_np/auth/auth_gate.dart';
 // import 'package:price_check_np/themes/light_mode.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LandingPage(),
+      home: const AuthGate(),
       theme: ThemeData(
         // background color
         primaryColorLight: Colors.white,

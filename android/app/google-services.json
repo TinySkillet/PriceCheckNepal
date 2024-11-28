@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1065212780201",
+    "project_id": "pricecheck-nepal",
+    "storage_bucket": "pricecheck-nepal.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065212780201:android:6aa312be9e572278ddd3b8",
+        "android_client_info": {
+          "package_name": "com.example.price_check_np"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRQAh4MWnODjZmEbWlB4E2IBGFxMRCU6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
