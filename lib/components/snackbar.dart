@@ -11,11 +11,11 @@ class MySnackbar extends SnackBar {
             style: const TextStyle(
               fontFamily: "Noto Sans",
               fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
           ),
           backgroundColor: const Color.fromRGBO(
               93, 88, 88, 1.0), // Replace with your desired color
-          showCloseIcon: true,
           closeIconColor: Colors.white, // Replace with your desired color
         );
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:price_check_np/auth/auth_service.dart';
+import 'package:price_check_np/components/alert_dialog.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/snackbar.dart';
@@ -24,23 +25,34 @@ class _LoginPageState extends State<LoginPage> {
 
   bool isRemembered = false; // the state of the checkbox
 
+  void loginWithGoogle(context) async {
+    final authService = AuthService();
+    try {
+      await authService.signInWithGoogle();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(MySnackbar(message: "Logged in succesfully!"));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(MySnackbar(message: e.toString()));
+    }
+  }
+
   void login(BuildContext context) async {
     // validate the email and password fields
     if (_emailController.text.trim().isEmpty ||
         _passwordController.text.trim().isEmpty) {
       showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: const Text('Please enter both email and password!'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+          context: context,
+          builder: (context) => MyAlertDialog(
+                title: "Error",
+                errorMessage: "Please enter both email and password!",
+                buttonText: "OK",
+                onPressed: () => Navigator.pop(context),
+              ));
       return;
     }
 
@@ -87,30 +99,22 @@ class _LoginPageState extends State<LoginPage> {
 
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Login Failed'),
-          content: Text(errorMessage),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
+        builder: (context) => MyAlertDialog(
+          title: "Login Failed!",
+          errorMessage: errorMessage,
+          buttonText: "OK",
+          onPressed: () => Navigator.pop(context),
         ),
       );
     } catch (e) {
       // handle other exceptions
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: Text('An error occurred: ${e.toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
+        builder: (context) => MyAlertDialog(
+          title: "Error",
+          errorMessage: "An error occurred: ${e.toString()}",
+          buttonText: "OK",
+          onPressed: () => Navigator.pop(context),
         ),
       );
     }
@@ -258,7 +262,9 @@ class _LoginPageState extends State<LoginPage> {
             ),
             // continue with google button
             MyButton(
-              onPressed: () {},
+              onPressed: () {
+                loginWithGoogle(context);
+              },
               buttontext: "Continue with Google",
               buttonicon: Image.asset(
                 "assets/images/google_icon.png",
