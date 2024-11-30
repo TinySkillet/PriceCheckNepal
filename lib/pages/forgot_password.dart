@@ -1,15 +1,57 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:price_check_np/auth/auth_service.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
+import 'package:price_check_np/pages/email_sent_success_page.dart';
 import 'package:price_check_np/pages/register_page.dart';
-import 'package:price_check_np/pages/send_code.dart';
+import 'package:price_check_np/utils/utils.dart';
 
 class ForgotPaswordPage extends StatelessWidget {
   ForgotPaswordPage({super.key});
 
   final TextEditingController _emailController = TextEditingController();
+
+  void sendPasswordResetEmail(context) {
+    if (_emailController.text.trim() == "") {
+      Utils.showErrorDialog(
+        context,
+        "Error",
+        "Please enter your email!",
+      );
+      return;
+    }
+
+    final authService = AuthService();
+
+    try {
+      authService.sendPasswordResetEmail(_emailController.text.trim());
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const PasswordResetEmailSentSuccessPage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email! Please enter a valid email address.';
+          break;
+        case 'user-not-found':
+          errorMessage =
+              'We could not find a user with that email address!\nPlease sign up and create an account!';
+          break;
+        default:
+          errorMessage = 'An unexpected error occurred: ${e.code}';
+      }
+      Utils.showErrorDialog(context, "Error!", errorMessage);
+    } catch (e) {
+      Utils.showErrorDialog(
+          context, "Error", "An error occurred: ${e.toString()}");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +90,7 @@ class ForgotPaswordPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: 50),
               child: Text(
-                "Please enter your email address to \nget the verification code!",
+                "If your email exists in our system, we \nwill send you a password reset link!",
                 style: TextStyle(
                   fontFamily: "Noto Sans",
                   fontSize: 16,
@@ -68,10 +110,7 @@ class ForgotPaswordPage extends StatelessWidget {
             const SizedBox(height: 30),
             MyButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SendCodePage()),
-                );
+                sendPasswordResetEmail(context);
               },
               buttontext: "Submit",
             ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/pages/login_page.dart';
 
-class PasswordChangedSuccessPage extends StatelessWidget {
-  const PasswordChangedSuccessPage({super.key});
+class PasswordResetEmailSentSuccessPage extends StatelessWidget {
+  const PasswordResetEmailSentSuccessPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class PasswordChangedSuccessPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Successful!",
+                "Success!",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: "Noto Sans",
@@ -48,7 +48,7 @@ class PasswordChangedSuccessPage extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                "Congratulations! Your password has \nbeen changed. Click continue to login.",
+                "Check your email for the password \nreset link!",
                 style: TextStyle(
                   fontFamily: "Noto Sans",
                   fontSize: 16,
@@ -60,8 +60,7 @@ class PasswordChangedSuccessPage extends StatelessWidget {
           const SizedBox(height: 30),
           MyButton(
             onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
               );

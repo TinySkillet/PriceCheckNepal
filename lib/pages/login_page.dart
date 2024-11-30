@@ -1,14 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:price_check_np/auth/auth_service.dart';
-import 'package:price_check_np/components/alert_dialog.dart';
+import 'package:price_check_np/utils/utils.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
-import 'package:price_check_np/components/snackbar.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
 import 'package:price_check_np/pages/forgot_password.dart';
-import 'package:price_check_np/pages/home_page.dart';
 import 'package:price_check_np/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,65 +21,42 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool isRemembered = false; // the state of the checkbox
-
-  void loginWithGoogle(context) async {
+  void loginWithGoogle(BuildContext context) async {
     final authService = AuthService();
     try {
       await authService.signInWithGoogle();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(MySnackbar(message: "Logged in succesfully!"));
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      Utils.handleSuccessfulLogin(context);
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(MySnackbar(message: e.toString()));
+      Utils.showErrorDialog(
+          context, "Error", "An error occurred: ${e.toString()}");
     }
   }
 
   void login(BuildContext context) async {
-    // validate the email and password fields
+    // validate  email and password fields
     if (_emailController.text.trim().isEmpty ||
         _passwordController.text.trim().isEmpty) {
-      showDialog(
-          context: context,
-          builder: (context) => MyAlertDialog(
-                title: "Error",
-                errorMessage: "Please enter both email and password!",
-                buttonText: "OK",
-                onPressed: () => Navigator.pop(context),
-              ));
+      Utils.showErrorDialog(
+        context,
+        "Error",
+        "Please enter both email and password!",
+      );
       return;
     }
 
     final authService = AuthService();
     try {
-      // Attempt to sign in
+      // attempt to sign in
       await authService.signInWithEmailPassword(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
-
-      // on successful login, navigate to another page or show a success message
-      ScaffoldMessenger.of(context)
-          .showSnackBar(MySnackbar(message: "Logged in successfully!"));
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      Utils.handleSuccessfulLogin(context);
     } on FirebaseAuthException catch (e) {
-      // show error dialog
       String errorMessage;
       switch (e.code) {
-        // case 'channel-error':
-        //   errorMessage =
-        //       'Network error! Please check your internet connection.';
-
         case 'invalid-email':
-          errorMessage = 'Invalid email! Please enter a valid email address';
+          errorMessage = 'Invalid email! Please enter a valid email address.';
           break;
         case 'invalid-credential':
           errorMessage = 'Email or password does not match!';
@@ -96,27 +71,10 @@ class _LoginPageState extends State<LoginPage> {
         default:
           errorMessage = 'An unexpected error occurred: ${e.code}';
       }
-
-      showDialog(
-        context: context,
-        builder: (context) => MyAlertDialog(
-          title: "Login Failed!",
-          errorMessage: errorMessage,
-          buttonText: "OK",
-          onPressed: () => Navigator.pop(context),
-        ),
-      );
+      Utils.showErrorDialog(context, "Login Failed!", errorMessage);
     } catch (e) {
-      // handle other exceptions
-      showDialog(
-        context: context,
-        builder: (context) => MyAlertDialog(
-          title: "Error",
-          errorMessage: "An error occurred: ${e.toString()}",
-          buttonText: "OK",
-          onPressed: () => Navigator.pop(context),
-        ),
-      );
+      Utils.showErrorDialog(
+          context, "Error", "An error occurred: ${e.toString()}");
     }
   }
 
@@ -183,43 +141,9 @@ class _LoginPageState extends State<LoginPage> {
               hintText: "Password",
               obsecureText: true,
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            // Remember Me checkbox
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Checkbox(
-                    value: isRemembered,
-                    splashRadius: 10.0,
-                    activeColor: Theme.of(context).primaryColorDark,
-                    checkColor: Theme.of(context).primaryColorLight,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isRemembered = value ?? false;
-                      });
-                    },
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isRemembered = !isRemembered;
-                      });
-                    },
-                    child: const Text(
-                      "Remember Me",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: "Noto Sans",
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // const SizedBox(
+            //   height: 15,
+            // ),
             const SizedBox(
               height: 20,
             ),
@@ -290,8 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                 MyTile(
                   tiletext: "Signup",
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const RegisterPage()),

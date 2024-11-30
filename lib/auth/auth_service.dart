@@ -1,14 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   // instance of auth
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  void createUserDocForFirstTime(UserCredential userCredential) {
+    // store in users doc, later we add more fields to it
+    firestore.collection("Users").doc(userCredential.user!.uid).set(
+      {
+        'uid': userCredential.user!.uid,
+        'email': userCredential.user!.email,
+      },
+      SetOptions(merge: true),
+    );
+  }
 
   // sign in with email password
   Future<UserCredential> signInWithEmailPassword(String email, password) async {
     try {
+      // create user
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       return userCredential;
@@ -43,7 +57,29 @@ class AuthService {
       // sign in with the credential
       UserCredential userCredential =
           await auth.signInWithCredential(credential);
+      createUserDocForFirstTime(userCredential);
       return userCredential;
+    } on FirebaseAuthException catch (e) {
+      throw e;
+    }
+  }
+
+  // register
+  Future<UserCredential> register(String email, password) async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      createUserDocForFirstTime(userCredential);
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      throw e;
+    }
+  }
+
+  // send password reset email
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw e;
     }
@@ -54,6 +90,5 @@ class AuthService {
     await googleSignIn.signOut();
     return await auth.signOut();
   }
-
   // errors
 }

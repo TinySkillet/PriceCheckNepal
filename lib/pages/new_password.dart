@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
-import 'package:price_check_np/pages/password_changed.dart';
+import 'package:price_check_np/pages/email_sent_success_page.dart';
 
 class SetNewPasswordPage extends StatelessWidget {
   SetNewPasswordPage({super.key});
@@ -81,7 +81,8 @@ class SetNewPasswordPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const PasswordChangedSuccessPage()),
+                      builder: (context) =>
+                          const PasswordResetEmailSentSuccessPage()),
                 );
               },
               buttontext: "Update Password",

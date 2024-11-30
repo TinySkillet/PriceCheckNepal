@@ -61,8 +61,7 @@ class LandingPage extends StatelessWidget {
                   TextButton.icon(
                     iconAlignment: IconAlignment.end,
                     onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const LoginPage()),
