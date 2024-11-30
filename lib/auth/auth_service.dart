@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  // instance of auth
+  // instances
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -26,8 +26,8 @@ class AuthService {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       return userCredential;
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException {
+      rethrow;
     }
   }
 
@@ -48,7 +48,7 @@ class AuthService {
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      // create a new credential
+      // create new credential
       final OAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -59,8 +59,8 @@ class AuthService {
           await auth.signInWithCredential(credential);
       createUserDocForFirstTime(userCredential);
       return userCredential;
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException {
+      rethrow;
     }
   }
 
@@ -71,8 +71,8 @@ class AuthService {
           email: email, password: password);
       createUserDocForFirstTime(userCredential);
       return userCredential;
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException {
+      rethrow;
     }
   }
 
@@ -80,8 +80,8 @@ class AuthService {
   Future<void> sendPasswordResetEmail(String email) async {
     try {
       await auth.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException {
+      rethrow;
     }
   }
 
@@ -90,5 +90,4 @@ class AuthService {
     await googleSignIn.signOut();
     return await auth.signOut();
   }
-  // errors
 }

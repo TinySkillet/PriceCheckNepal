@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:price_check_np/auth/auth_gate.dart';
-// import 'package:price_check_np/themes/light_mode.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
