@@ -42,7 +42,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? Text(
               title!,
               style: TextStyle(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).primaryColorDark,
+                fontFamily: "Noto Sans",
+                fontWeight: FontWeight.bold,
               ),
             )
           : null, // showing title only if provided

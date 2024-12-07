@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:price_check_np/components/appbar.dart';
-import 'package:price_check_np/components/button.dart';
-import 'package:price_check_np/components/snackbar.dart';
-import 'package:price_check_np/pages/login_page.dart';
+import 'package:price_check_np/pages/home_content.dart';
 import 'package:price_check_np/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: const MyAppBar(
         isBackBtnRequired: false,
-        title: "Home Page",
+        title: "Price Check Nepal",
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -59,31 +57,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        MyButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginPage()),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(
-              MySnackbar(message: "Logged out successfully!"),
-            );
-          },
-          buttontext: "Logout",
-        ),
-      ],
     );
   }
 }
