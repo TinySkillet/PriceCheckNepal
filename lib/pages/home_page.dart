@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: const MyAppBar(
         isBackBtnRequired: false,
-        title: "Price Check Nepal",
+        title: "PriceCheck Nepal",
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

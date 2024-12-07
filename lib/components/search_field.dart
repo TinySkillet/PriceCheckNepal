@@ -13,7 +13,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Theme.of(context).primaryColorDark.withOpacity(.11),
