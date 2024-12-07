@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:price_check_np/pages/laptop_specs_page.dart';
 
 class ViewLaptopSpecsButton extends StatelessWidget {
   final Map<String, dynamic> laptop;
@@ -27,11 +28,16 @@ class ViewLaptopSpecsButton extends StatelessWidget {
           ),
           shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0), // Add border radius
+              borderRadius: BorderRadius.circular(8.0),
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => LaptopSpecsPage(laptop: laptop)));
+        },
         child: Text(
           "View Full Specs and Compare Prices",
           style: TextStyle(

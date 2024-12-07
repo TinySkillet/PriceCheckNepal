@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/popular_laptop_card.dart';
 import 'package:price_check_np/components/search_field.dart';
-import 'package:price_check_np/components/snackbar.dart';
 import 'package:price_check_np/components/trending_laptop_card.dart';
 import 'package:price_check_np/components/view_laptop_specs_button.dart';
 import 'package:price_check_np/firestore/middleware.dart';
-import 'package:price_check_np/pages/login_page.dart';
 import 'package:price_check_np/utils/utils.dart';
 
 class HomeContent extends StatelessWidget {
@@ -58,7 +55,7 @@ class HomeContent extends StatelessWidget {
 
                   return ListView.separated(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
+                      horizontal: 25,
                     ),
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
@@ -127,18 +124,6 @@ class HomeContent extends StatelessWidget {
                   );
                 },
               ),
-            ),
-            MyButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(
-                  MySnackbar(message: "Logged out successfully!"),
-                );
-              },
-              buttontext: "Logout",
             ),
           ],
         ),

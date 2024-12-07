@@ -18,15 +18,15 @@ class TrendingLaptopCard extends StatelessWidget {
         Row(
           children: [
             CachedNetworkImage(
-              height: 100,
-              width: 100,
+              height: 80,
+              width: 80,
               imageUrl: laptop["image_url"] ??
                   "https://img.freepik.com/free-vector/sky-scene-laptop-desktop_1308-49390.jpg?t=st=1733573684~exp=1733577284~hmac=19ca671516c0d1b5df221420338fa397768fb0f226383401f3670c365fd6325c&w=1800",
               placeholder: (context, url) => const CircularProgressIndicator(),
               errorWidget: (context, url, error) => Image.asset(
                 "assets/images/laptop_placeholder.jpg", // Replace with your local placeholder image
-                height: 100,
-                width: 200,
+                height: 80,
+                width: 80,
                 fit: BoxFit.cover,
               ),
             ),

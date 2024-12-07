@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _screens = [
     HomeContent(), // Home screen content
-    ProfilePage(), // Profile page
+    const ProfilePage(), // Profile page
   ];
 
   @override
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: const MyAppBar(
         isBackBtnRequired: false,
-        title: "PriceCheck Nepal",
+        title: "Price Check Nepal",
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
