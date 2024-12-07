@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
 
         // appbar back button color
         indicatorColor: const Color.fromRGBO(93, 88, 88, 1.0),
-
-        // color for landing page background
-        splashColor: const Color.fromRGBO(27, 25, 26, 1.0),
       ),
     );
   }

@@ -27,7 +27,7 @@ class Utils {
     Future.delayed(const Duration(milliseconds: 1000), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     });
   }
@@ -37,7 +37,7 @@ class Utils {
         .showSnackBar(MySnackbar(message: "Logged in successfully!"));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => HomePage()),
     );
   }
 }
