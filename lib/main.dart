@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       home: const LandingPage(),
       theme: ThemeData(
         // background color
-        primaryColorLight: Colors.white,
+        primaryColorLight: const Color.fromARGB(255, 254, 247, 255),
         scaffoldBackgroundColor: Colors.white,
 
         // text, button color

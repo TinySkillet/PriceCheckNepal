@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:price_check_np/pages/profile_page.dart';
+import 'package:price_check_np/pages/login_page.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Settings"),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 254, 247, 255),
         elevation: 0,
         leading: const SizedBox(),
       ),
@@ -85,7 +86,7 @@ class SettingsPage extends StatelessWidget {
               ),
               subtitle: const Text("View terms of service"),
               onTap: () {
-                // Add navigation Logic
+                // Navigation Logic
               },
             ),
             const Divider(),
@@ -96,12 +97,11 @@ class SettingsPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: const Text("For assistance, contact us at"),
-              trailing: Text(
+              trailing: const Text(
                 "support@pricechecknepal.com",
-                style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
               ),
               onTap: () {
-                // Add contact logic
+                // Contact logic
               },
             ),
             const Divider(),
@@ -116,7 +116,38 @@ class SettingsPage extends StatelessWidget {
               ),
               subtitle: const Text("Sign out of your account"),
               onTap: () {
-                // Add logout logic
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure you want to log out?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
+                          },
+                          child: const Text(
+                            "Logout",
+                            style: TextStyle(color: Colors.red),
+                          ),
+
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
-import 'package:price_check_np/components/profiletextfield.dart'; // Import ProfileTextField
+import 'package:price_check_np/components/profiletextfield.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,9 +20,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 254, 247, 255), 
       appBar: const MyAppBar(
-        isBackBtnRequired: false,
+        isBackBtnRequired: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         right: 0,
                         child: GestureDetector(
                           onTap: () {
-                            // You can add functionality for editing the profile here
+                            // Add functionality for editing the profile here
                           },
                           child: CircleAvatar(
                             radius: 20,

@@ -72,7 +72,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
                     )
                   : null, 
               filled: true,
-              fillColor: Colors.white,
+              fillColor: const Color.fromARGB(255, 254, 247, 255),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
