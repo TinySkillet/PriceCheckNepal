@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:price_check_np/components/button.dart';
-import 'package:price_check_np/pages/login_page.dart';
+import 'package:go_router/go_router.dart';
 
 class PasswordResetEmailSentSuccessPage extends StatelessWidget {
   const PasswordResetEmailSentSuccessPage({super.key});
@@ -60,10 +60,7 @@ class PasswordResetEmailSentSuccessPage extends StatelessWidget {
           const SizedBox(height: 30),
           MyButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
+              context.go("/login");
             },
             buttontext: "Continue",
           ),

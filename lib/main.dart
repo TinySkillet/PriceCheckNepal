@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:price_check_np/auth/auth_gate.dart';
+import 'package:price_check_np/routing/app_router.dart'; // Use the correct import
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,18 +13,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: const AuthGate(),
+      routerDelegate: AppRouter.router.routerDelegate,
+      routeInformationProvider: AppRouter.router.routeInformationProvider,
+      routeInformationParser: AppRouter.router.routeInformationParser,
       theme: ThemeData(
-        // background color
         primaryColorLight: Colors.white,
         scaffoldBackgroundColor: Colors.white,
-
-        // text, button color
         primaryColorDark: Colors.black,
-
-        // appbar back button color
         indicatorColor: const Color.fromRGBO(93, 88, 88, 1.0),
       ),
     );

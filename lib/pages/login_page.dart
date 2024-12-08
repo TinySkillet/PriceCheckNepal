@@ -6,8 +6,7 @@ import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
-import 'package:price_check_np/pages/forgot_password.dart';
-import 'package:price_check_np/pages/register_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -161,11 +160,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 TextButton.icon(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ForgotPaswordPage()),
-                    );
+                    context.push('/forgotpassword');
                   },
                   label: Text(
                     "Forgot Password?",
@@ -214,11 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                 MyTile(
                   tiletext: "Signup",
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterPage()),
-                    );
+                    context.push('/signup');
                   },
                 ),
               ],

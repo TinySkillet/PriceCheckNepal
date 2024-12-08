@@ -5,16 +5,15 @@ import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
-import 'package:price_check_np/pages/email_sent_success_page.dart';
-import 'package:price_check_np/pages/register_page.dart';
 import 'package:price_check_np/utils/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgotPaswordPage extends StatelessWidget {
   ForgotPaswordPage({super.key});
 
   final TextEditingController _emailController = TextEditingController();
 
-  void sendPasswordResetEmail(context) {
+  void sendPasswordResetEmail(BuildContext context) async {
     if (_emailController.text.trim() == "") {
       Utils.showErrorDialog(
         context,
@@ -27,12 +26,8 @@ class ForgotPaswordPage extends StatelessWidget {
     final authService = AuthService();
 
     try {
-      authService.sendPasswordResetEmail(_emailController.text.trim());
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const PasswordResetEmailSentSuccessPage()),
-      );
+      await authService.sendPasswordResetEmail(_emailController.text.trim());
+      context.go("/emailsent");
     } on FirebaseAuthException catch (e) {
       String errorMessage;
       switch (e.code) {
@@ -131,12 +126,7 @@ class ForgotPaswordPage extends StatelessWidget {
                 MyTile(
                   tiletext: "Signup",
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterPage()),
-                    );
+                    context.go('/signup');
                   },
                 ),
               ],

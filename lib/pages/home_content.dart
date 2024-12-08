@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/popular_laptop_card.dart';
 import 'package:price_check_np/components/search_field.dart';
 import 'package:price_check_np/components/trending_laptop_card.dart';
@@ -7,12 +8,18 @@ import 'package:price_check_np/firestore/middleware.dart';
 import 'package:price_check_np/utils/utils.dart';
 
 class HomeContent extends StatelessWidget {
-  HomeContent({super.key});
+  HomeContent({
+    super.key,
+  });
 
   final FirestoreMiddleware middleware = FirestoreMiddleware();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const MyAppBar(
+        isBackBtnRequired: false,
+        title: "Home",
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(

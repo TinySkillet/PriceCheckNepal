@@ -5,8 +5,8 @@ import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/button.dart';
 import 'package:price_check_np/components/textfield.dart';
 import 'package:price_check_np/components/tile.dart';
-import 'package:price_check_np/pages/login_page.dart';
 import 'package:price_check_np/utils/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -199,11 +199,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 MyTile(
                   tiletext: "Login",
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                    context.push(
+                      '/login',
                     );
                   },
                 ),

@@ -1,42 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:price_check_np/components/appbar.dart';
-import 'package:price_check_np/pages/home_content.dart';
-import 'package:price_check_np/pages/profile_page.dart';
+import 'package:go_router/go_router.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  final StatefulNavigationShell shell;
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
-
-  final List<Widget> _screens = [
-    HomeContent(), // Home screen content
-    const ProfilePage(), // Profile page
-  ];
+  const HomePage({
+    super.key,
+    required this.shell,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(
-        isBackBtnRequired: false,
-        title: "Price Check Nepal",
-      ),
-      body: _screens[_currentIndex],
+      body: shell,
       bottomNavigationBar: BottomNavigationBar(
+        onTap: shell.goBranch,
+        currentIndex: shell.currentIndex,
         selectedItemColor: Theme.of(context).primaryColorDark,
         useLegacyColorScheme: false,
         enableFeedback: false,
         selectedFontSize: 12,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        // onTap:,
         backgroundColor: Theme.of(context).primaryColorLight,
         items: [
           BottomNavigationBarItem(

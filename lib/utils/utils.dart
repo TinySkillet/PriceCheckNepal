@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:price_check_np/components/alert_dialog.dart';
 import 'package:price_check_np/components/snackbar.dart';
-import 'package:price_check_np/pages/home_page.dart';
+import 'package:go_router/go_router.dart';
 
 class Utils {
   static void showErrorDialog(
@@ -25,19 +25,13 @@ class Utils {
         MySnackbar(message: "Registered successfully! Logging you in....."));
 
     Future.delayed(const Duration(milliseconds: 1000), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      context.go("/home");
     });
   }
 
   static void handleSuccessfulLogin(BuildContext context) {
     ScaffoldMessenger.of(context)
         .showSnackBar(MySnackbar(message: "Logged in successfully!"));
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
+    context.go("/home");
   }
 }

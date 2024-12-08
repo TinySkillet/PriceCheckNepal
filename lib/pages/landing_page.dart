@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:price_check_np/pages/login_page.dart';
-// import 'package:price_check_np/pages/login_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -61,11 +60,7 @@ class LandingPage extends StatelessWidget {
                   TextButton.icon(
                     iconAlignment: IconAlignment.end,
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
-                      );
+                      context.go('/login');
                     },
                     label: Text(
                       "Get Started",

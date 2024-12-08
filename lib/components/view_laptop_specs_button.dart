@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:price_check_np/pages/laptop_specs_page.dart';
+import 'package:go_router/go_router.dart';
 
 class ViewLaptopSpecsButton extends StatelessWidget {
   final Map<String, dynamic> laptop;
-
   const ViewLaptopSpecsButton({
     super.key,
     required this.laptop,
@@ -33,10 +32,7 @@ class ViewLaptopSpecsButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => LaptopSpecsPage(laptop: laptop)));
+          context.push('/laptop-specs', extra: laptop);
         },
         child: Text(
           "View Full Specs and Compare Prices",

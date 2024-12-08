@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final bool isBackBtnRequired;
+  final bool? centerTitle;
   const MyAppBar({
     super.key,
     this.title,
     required this.isBackBtnRequired,
+    this.centerTitle,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: centerTitle ?? false,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       leadingWidth: 100,
@@ -33,7 +37,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: Theme.of(context).indicatorColor,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  context.pop();
                 },
               ),
             )

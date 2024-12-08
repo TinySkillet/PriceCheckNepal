@@ -12,7 +12,7 @@ class TrendingLaptopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
@@ -24,7 +24,7 @@ class TrendingLaptopCard extends StatelessWidget {
                   "https://img.freepik.com/free-vector/sky-scene-laptop-desktop_1308-49390.jpg?t=st=1733573684~exp=1733577284~hmac=19ca671516c0d1b5df221420338fa397768fb0f226383401f3670c365fd6325c&w=1800",
               placeholder: (context, url) => const CircularProgressIndicator(),
               errorWidget: (context, url, error) => Image.asset(
-                "assets/images/laptop_placeholder.jpg", // Replace with your local placeholder image
+                "assets/images/laptop_placeholder.png",
                 height: 80,
                 width: 80,
                 fit: BoxFit.cover,
