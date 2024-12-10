@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 40,
             ),
             Container(
-              padding: const EdgeInsets.only(left: 50),
+              padding: const EdgeInsets.only(left: 40),
               child: Text(
                 "Signup",
                 textAlign: TextAlign.left,
@@ -125,7 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 10,
             ),
             Container(
-              padding: const EdgeInsets.only(left: 50),
+              padding: const EdgeInsets.only(left: 40),
               child: Text(
                 "Just some details to get you in!",
                 style: TextStyle(

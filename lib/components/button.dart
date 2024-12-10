@@ -16,7 +16,7 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextButton.icon(
         iconAlignment: IconAlignment.start,
         onPressed: _onPressed,

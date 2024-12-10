@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
               Icons.person,
               weight: .2,
             ),
-            label: 'Profile',
+            label: 'Settings',
           ),
         ],
       ),

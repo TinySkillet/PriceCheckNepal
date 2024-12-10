@@ -9,8 +9,11 @@ import 'package:price_check_np/pages/home_page.dart';
 import 'package:price_check_np/pages/landing_page.dart';
 import 'package:price_check_np/pages/laptop_specs_page.dart';
 import 'package:price_check_np/pages/login_page.dart';
-import 'package:price_check_np/pages/profile_page.dart';
+import 'package:price_check_np/pages/profile_page2.dart';
+import 'package:price_check_np/pages/recent_searches_page.dart';
 import 'package:price_check_np/pages/register_page.dart';
+import 'package:price_check_np/pages/search_page.dart';
+import 'package:price_check_np/pages/settings_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -18,28 +21,26 @@ class AppRouter {
       // Check if user is logged in
       final bool loggedIn = FirebaseAuth.instance.currentUser != null;
 
-      // Define paths that don't require authentication
       final bool isLoggingIn = state.matchedLocation == '/login';
       final bool isSigningUp = state.matchedLocation == '/signup';
       final bool isForgotPassword = state.matchedLocation == '/forgotpassword';
       final bool isEmailSent = state.matchedLocation == '/emailsent';
 
-      // Allow unauthenticated access to specific routes
+      // unauthenticated access to specific routes
       final bool isPublicRoute =
           isLoggingIn || isSigningUp || isForgotPassword || isEmailSent;
 
-      // Redirect logic
+      // redirect
       if (!loggedIn && !isPublicRoute) {
-        // If not logged in and not on a public route, redirect to login
+        // if not logged in and not on a public route redirect to login
         return '/';
       }
 
       if (loggedIn && isPublicRoute) {
-        // If logged in and trying to access login/signup pages, redirect to home
+        // if logged in and trying to access login/signup pages redirect to home
         return '/home';
       }
 
-      // Allow navigation
       return null;
     },
     routes: [
@@ -81,17 +82,36 @@ class AppRouter {
                   },
                 ),
                 GoRoute(
-                  path: "/search",
-                  builder: (context, state) => HomeContent(),
+                  path: "/recent-views",
+                  builder: (context, state) {
+                    return RecentViewsPage();
+                  },
+                ),
+                GoRoute(
+                  path: '/search',
+                  builder: (context, state) => const SearchPage(),
+                  pageBuilder: (context, state) {
+                    final extra = state.extra;
+                    return MaterialPage(
+                      child: const SearchPage(),
+                      arguments: extra,
+                    );
+                  },
                 ),
               ],
             ),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                path: "/profile",
-                builder: (context, state) => const ProfilePage(),
-              )
-            ])
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: "/settings",
+                  builder: (context, state) => const SettingsPage(),
+                ),
+                GoRoute(
+                  path: "/profile",
+                  builder: (context, state) => const ProfilePage(),
+                )
+              ],
+            )
           ]),
       // Home Route with Nested Routes
     ],

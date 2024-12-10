@@ -3,11 +3,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchField extends StatelessWidget {
   final String hintText;
-  final bool requiresFilter;
+  final bool autofocus;
+  final Function()? onTap;
+  final Function()? onComplete;
+  final TextEditingController? controller;
+
   const SearchField({
     super.key,
     required this.hintText,
-    required this.requiresFilter,
+    required this.autofocus,
+    this.controller,
+    this.onTap,
+    this.onComplete,
   });
 
   @override
@@ -22,49 +29,28 @@ class SearchField extends StatelessWidget {
         )
       ]),
       child: TextField(
+        autofocus: autofocus,
+        onEditingComplete: onComplete,
+        controller: controller,
+        onTap: onTap ?? () {},
         decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: const EdgeInsets.all(15),
-            hintText: hintText,
-            hintStyle: TextStyle(
-              color: Theme.of(context).primaryColorDark,
-              fontFamily: "Noto Sans",
-              fontSize: 14,
-            ),
-            prefixIcon: Padding(
-              padding: const EdgeInsets.all(12),
-              child: SvgPicture.asset('assets/images/Search.svg'),
-            ),
-            suffixIcon: SizedBox(
-              width: 80,
-              child: IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Offstage(
-                      offstage: !requiresFilter,
-                      child: VerticalDivider(
-                        color: Theme.of(context).primaryColorDark,
-                        indent: 10,
-                        endIndent: 10,
-                        thickness: .1,
-                      ),
-                    ),
-                    Offstage(
-                      offstage: !requiresFilter,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: SvgPicture.asset('assets/images/Filter.svg'),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none)),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.all(15),
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: Theme.of(context).primaryColorDark,
+            fontFamily: "Noto Sans",
+            fontSize: 14,
+          ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset('assets/images/Search.svg'),
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide.none),
+        ),
       ),
     );
   }

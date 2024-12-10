@@ -3,9 +3,9 @@ import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/popular_laptop_card.dart';
 import 'package:price_check_np/components/search_field.dart';
 import 'package:price_check_np/components/trending_laptop_card.dart';
-import 'package:price_check_np/components/view_laptop_specs_button.dart';
 import 'package:price_check_np/firestore/middleware.dart';
 import 'package:price_check_np/utils/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeContent extends StatelessWidget {
   HomeContent({
@@ -25,9 +25,12 @@ class HomeContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SearchField(
+            SearchField(
               hintText: "Search laptops",
-              requiresFilter: false,
+              autofocus: false,
+              onTap: () {
+                context.push("/search");
+              },
             ),
             const SizedBox(
               height: 30,
@@ -45,7 +48,7 @@ class HomeContent extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 5,
+              height: 15,
             ),
             SizedBox(
               height: 230,
@@ -93,7 +96,7 @@ class HomeContent extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             SizedBox(
               // height: 230,
@@ -115,7 +118,7 @@ class HomeContent extends StatelessWidget {
                     children: laptops.map((laptop) {
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 40, right: 40, bottom: 50),
+                            left: 25, right: 25, bottom: 0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -123,7 +126,7 @@ class HomeContent extends StatelessWidget {
                             const SizedBox(
                               height: 15,
                             ),
-                            ViewLaptopSpecsButton(laptop: laptop),
+                            // ViewLaptopSpecsButton(laptop: laptop),
                           ],
                         ),
                       );

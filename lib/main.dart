@@ -1,11 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:price_check_np/routing/app_router.dart'; // Use the correct import
+import 'package:price_check_np/models/filter_provider.dart';
+import 'package:price_check_np/routing/app_router.dart';
+import 'package:provider/provider.dart'; // Use the correct import
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FilterProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

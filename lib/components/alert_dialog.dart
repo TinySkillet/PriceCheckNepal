@@ -36,6 +36,10 @@ class MyAlertDialog extends StatelessWidget {
       actions: [
         TextButton(
           style: ButtonStyle(
+              textStyle: const WidgetStatePropertyAll(TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              )),
               foregroundColor:
                   WidgetStatePropertyAll(Theme.of(context).primaryColorLight),
               backgroundColor:

@@ -28,7 +28,7 @@ class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: TextField(
         obscureText: _isObscured,
         style: TextStyle(

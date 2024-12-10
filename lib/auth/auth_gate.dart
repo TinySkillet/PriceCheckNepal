@@ -13,7 +13,7 @@
 //         builder: (context, snapshot) {
 //           // Show loading indicator while checking auth state
 //           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return const Center(child: CircularProgressIndicator());
+//             return const Center(child: CircularProgressIndicator()); 
 //           }
 
 //           // If user is logged in, redirect to home

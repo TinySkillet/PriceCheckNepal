@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class ViewLaptopSpecsButton extends StatelessWidget {
-  final Map<String, dynamic> laptop;
-  const ViewLaptopSpecsButton({
+class LightButton extends StatelessWidget {
+  final Function() onPressed;
+  final String buttontext;
+  final bool? isEnabled;
+  const LightButton({
     super.key,
-    required this.laptop,
+    required this.onPressed,
+    required this.buttontext,
+    this.isEnabled,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll<Color>(
-            Theme.of(context).primaryColorLight,
-          ),
+          backgroundColor: (isEnabled ?? false)
+              ? const WidgetStatePropertyAll<Color>(
+                  Colors.redAccent,
+                )
+              : WidgetStatePropertyAll<Color>(
+                  Theme.of(context).primaryColorLight,
+                ),
           padding:
               const WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 12)),
           side: WidgetStatePropertyAll<BorderSide>(
@@ -31,13 +39,13 @@ class ViewLaptopSpecsButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {
-          context.push('/laptop-specs', extra: laptop);
-        },
+        onPressed: onPressed,
         child: Text(
-          "View Full Specs and Compare Prices",
+          buttontext,
           style: TextStyle(
-            color: Theme.of(context).primaryColorDark,
+            color: (isEnabled ?? false)
+                ? Theme.of(context).primaryColorLight
+                : Theme.of(context).primaryColorDark,
             fontFamily: "Noto Sans",
             fontSize: 16,
             fontWeight: FontWeight.bold,

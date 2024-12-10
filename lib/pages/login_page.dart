@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
             ),
             Container(
-              padding: const EdgeInsets.only(left: 50),
+              padding: const EdgeInsets.only(left: 40),
               child: Text(
                 "Login",
                 textAlign: TextAlign.left,
@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             // Subtitle text
             Container(
-              padding: const EdgeInsets.only(left: 50),
+              padding: const EdgeInsets.only(left: 40),
               child: Text(
                 "Glad you're back!",
                 style: TextStyle(
