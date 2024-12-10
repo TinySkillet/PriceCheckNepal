@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:price_check_np/Esewa%20Functions/esewa.dart';
+import 'package:price_check_np/pages/esewa_page.dart';
 import 'package:price_check_np/pages/profile_page.dart';
 import 'package:price_check_np/pages/login_page.dart'; 
 
@@ -73,7 +75,7 @@ class SettingsPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
                 );
               },
             ),
@@ -105,6 +107,22 @@ class SettingsPage extends StatelessWidget {
               },
             ),
             const Divider(),
+
+            ListTile(
+              title: const Text(
+                "Donation",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text("Help us by donating us through esewa"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EsewaScreen()),
+                );
+              },
+            ),
+            const Divider(),
+
             // Logout Option
             ListTile(
               title: const Text(
