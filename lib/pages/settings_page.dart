@@ -132,10 +132,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   onTap: () {
                     // Implement Esewa payment logic
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      MySnackbar(
-                          message: "Esewa donation feature coming soon!"),
-                    );
                   },
                 ),
               ],
