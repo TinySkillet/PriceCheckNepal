@@ -121,12 +121,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const SizedBox(height: 8),
                 ListTile(
-                  title: Text(
-                    "Esewa (Rs. ${_donationAmount.toStringAsFixed(2)})",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 117, 211, 120),
+                  title: const Text(
+                    "Pay with Esewa",
+                    style: TextStyle(
                       fontSize: 16,
+                      fontFamily: "Noto Sans",
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
                     ),
                   ),
                   onTap: () {
@@ -134,23 +135,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       MySnackbar(
                           message: "Esewa donation feature coming soon!"),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    "Khalti (Rs. ${_donationAmount.toStringAsFixed(2)})",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple,
-                      fontSize: 16,
-                    ),
-                  ),
-                  onTap: () {
-                    // Implement Khalti payment logic
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      MySnackbar(
-                          message: "Khalti donation feature coming soon!"),
                     );
                   },
                 ),
