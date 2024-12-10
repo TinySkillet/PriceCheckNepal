@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:price_check_np/models/filter_provider.dart';
 import 'package:price_check_np/routing/app_router.dart';
-import 'package:provider/provider.dart'; // Use the correct import
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

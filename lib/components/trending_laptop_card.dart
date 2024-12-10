@@ -17,7 +17,7 @@ class TrendingLaptopCard extends StatelessWidget {
         context.push("/laptop-specs", extra: laptop);
       },
       child: Container(
-        width: 350,
+        width: double.infinity,
         height: 130,
         margin: const EdgeInsets.symmetric(vertical: 10.0),
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),

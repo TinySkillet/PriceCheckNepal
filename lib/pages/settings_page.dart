@@ -18,6 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
   String _userEmail = '';
   bool _isLoading = true;
   bool _isDonationOptionsVisible = false;
+  int _donationAmount = 10;
 
   @override
   void initState() {
@@ -103,17 +104,33 @@ class _SettingsPageState extends State<SettingsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 8),
+                TextField(
+                  autofocus: false,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter donation amount (minimum Rs. 10)',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _donationAmount = int.tryParse(value) ?? 10;
+                      if (_donationAmount < 10) {
+                        _donationAmount = 10;
+                      }
+                    });
+                  },
+                ),
+                const SizedBox(height: 8),
                 ListTile(
-                  title: const Text(
-                    "Esewa",
-                    style: TextStyle(
+                  title: Text(
+                    "Esewa (Rs. ${_donationAmount.toStringAsFixed(2)})",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: Color.fromARGB(255, 117, 211, 120),
                       fontSize: 16,
                     ),
                   ),
                   onTap: () {
-                    // esewa payment logic
+                    // Implement Esewa payment logic
                     ScaffoldMessenger.of(context).showSnackBar(
                       MySnackbar(
                           message: "Esewa donation feature coming soon!"),
@@ -121,16 +138,16 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 ListTile(
-                  title: const Text(
-                    "Khalti",
-                    style: TextStyle(
+                  title: Text(
+                    "Khalti (Rs. ${_donationAmount.toStringAsFixed(2)})",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.purple,
                       fontSize: 16,
                     ),
                   ),
                   onTap: () {
-                    // khalti payment logic
+                    // Implement Khalti payment logic
                     ScaffoldMessenger.of(context).showSnackBar(
                       MySnackbar(
                           message: "Khalti donation feature coming soon!"),

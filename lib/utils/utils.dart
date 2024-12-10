@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:price_check_np/components/alert_dialog.dart';
 import 'package:price_check_np/components/snackbar.dart';
@@ -33,5 +35,19 @@ class Utils {
     ScaffoldMessenger.of(context)
         .showSnackBar(MySnackbar(message: "Logged in successfully!"));
     context.go("/home");
+  }
+
+  static String generateDonationId() {
+    const chars =
+        'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ1234567890';
+    final random = Random();
+    const length = 12;
+
+    final randomString = List.generate(
+      length,
+      (index) => chars[random.nextInt(chars.length)],
+    ).join();
+
+    return "donation_id_$randomString";
   }
 }
