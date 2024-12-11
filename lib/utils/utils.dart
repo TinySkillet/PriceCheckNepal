@@ -41,7 +41,7 @@ class Utils {
     const chars =
         'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ1234567890';
     final random = Random();
-    const length = 12;
+    const length = 16;
 
     final randomString = List.generate(
       length,

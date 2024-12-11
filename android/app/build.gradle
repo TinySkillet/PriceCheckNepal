@@ -30,6 +30,13 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def name = "PriceCheck-${variant.versionName}"
+            outputFileName = "${name}.apk"
+        }
+    }
 
     buildTypes {
         release {

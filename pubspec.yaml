@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  esewa_flutter_sdk:
+    path: ./esewa_flutter_sdk 
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -45,10 +47,14 @@ dependencies:
   go_router: ^14.6.2
   url_launcher: ^6.3.1
   provider: ^6.1.2
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
+    sdk: flutter  
+  flutter_launcher_icons: ^0.14.2
+
+
   
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -57,6 +63,13 @@ dev_dependencies:
   # rules and activating additional ones.
   
   flutter_lints: ^4.0.0
+    
+
+
+flutter_icons:
+  android: true
+  # image_path: "assets/<your_file_name>"
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

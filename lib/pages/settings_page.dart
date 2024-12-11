@@ -5,6 +5,7 @@ import 'package:price_check_np/auth/auth_service.dart';
 import 'package:price_check_np/components/appbar.dart';
 import 'package:price_check_np/components/snackbar.dart';
 import 'package:go_router/go_router.dart';
+import 'package:price_check_np/payment/esewa.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -131,7 +132,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   onTap: () {
-                    // Implement Esewa payment logic
+                    EsewaPaymentGateway gateway = EsewaPaymentGateway(
+                        amount: _donationAmount, context: context);
+                    gateway.InitiatePayment();
                   },
                 ),
               ],
