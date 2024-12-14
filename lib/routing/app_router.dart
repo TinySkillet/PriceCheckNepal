@@ -9,7 +9,7 @@ import 'package:price_check_np/pages/home_page.dart';
 import 'package:price_check_np/pages/landing_page.dart';
 import 'package:price_check_np/pages/laptop_specs_page.dart';
 import 'package:price_check_np/pages/login_page.dart';
-import 'package:price_check_np/pages/profile_page2.dart';
+import 'package:price_check_np/pages/profile_page.dart';
 import 'package:price_check_np/pages/recent_searches_page.dart';
 import 'package:price_check_np/pages/register_page.dart';
 import 'package:price_check_np/pages/search_page.dart';

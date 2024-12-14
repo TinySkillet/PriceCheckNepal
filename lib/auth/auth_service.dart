@@ -39,7 +39,7 @@ class AuthService {
 
       if (googleUser == null) {
         throw FirebaseAuthException(
-          code: 'ERROR_ABORTED_BY_USER',
+          code: 'Aborted',
           message: "Sign-in aborted by user",
         );
       }

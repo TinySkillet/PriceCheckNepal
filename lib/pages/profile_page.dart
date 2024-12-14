@@ -131,25 +131,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: Icon(Icons.person,
                                   size: 100, color: Colors.white),
                             ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: GestureDetector(
-                                onTap: () {
-                                  // Future profile picture update functionality
-                                },
-                                child: const CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor:
-                                      Color.fromARGB(255, 246, 246, 246),
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         const SizedBox(height: 5),

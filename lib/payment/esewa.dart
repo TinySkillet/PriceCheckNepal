@@ -79,7 +79,7 @@ class EsewaPaymentGateway {
         ),
         onPaymentSuccess: (EsewaPaymentSuccessResult data) {
           log(":::SUCCESS::: => $data");
-          verifyTransactionStatus(data);
+          // verifyTransactionStatus(data);
         },
         onPaymentFailure: (data) {
           log(":::FAILURE::: => $data");
