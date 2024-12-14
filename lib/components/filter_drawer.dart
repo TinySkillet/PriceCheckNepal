@@ -265,6 +265,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: ElevatedButton(
+                      key: Key("apply_filters_button"),
                       style: ButtonStyle(
                           foregroundColor: WidgetStatePropertyAll(
                             Theme.of(context).primaryColorDark,
