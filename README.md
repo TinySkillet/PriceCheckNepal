@@ -2,11 +2,6 @@
 
 A Flutter application to help users compare prices of tech items across various e-commerce platforms in Nepal. PriceCheck Nepal is designed to make shopping easier, saving time and money by providing a centralized platform for price comparison.
 
-![image](https://github.com/user-attachments/assets/23d70f27-76df-4657-8c1e-555cce357ab6)
-
-![image](https://github.com/user-attachments/assets/87860436-290a-44a2-a7dd-c3b8df9d5145)
-
-![image](https://github.com/user-attachments/assets/fcc75315-0241-49ad-9826-520072fbe670)
 
 ---
 
