@@ -15,7 +15,7 @@ Screenshots
 ## Features
 
 - 🛒 **Compare prices** of tech items from multiple e-commerce platforms in Nepal.
-- 🔍 **Real-time updates** to ensure accurate and up-to-date prices.
+- 🔍 **Frequent updates** to ensure accurate and up-to-date prices.
 - 📊 **Analytics for subscribers** (future feature).
 - 🌐 **User-friendly interface** built with Flutter.
 
