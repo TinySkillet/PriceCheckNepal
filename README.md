@@ -2,7 +2,11 @@
 
 A Flutter application to help users compare prices of tech items across various e-commerce platforms in Nepal. PriceCheck Nepal is designed to make shopping easier, saving time and money by providing a centralized platform for price comparison.
 
-![App Screenshot](https://via.placeholder.com/800x400?text=PriceCheck+Nepal+App+Screenshot) 
+![image](https://github.com/user-attachments/assets/23d70f27-76df-4657-8c1e-555cce357ab6)
+
+![image](https://github.com/user-attachments/assets/87860436-290a-44a2-a7dd-c3b8df9d5145)
+
+![image](https://github.com/user-attachments/assets/fcc75315-0241-49ad-9826-520072fbe670)
 
 ---
 
@@ -22,21 +26,23 @@ A Flutter application to help users compare prices of tech items across various 
 - Android/iOS emulator or a physical device for testing
 
 ### Steps
-1. Clone the repository:
+###### 1. Clone the repository:
    ```bash
    git clone https://github.com/TinySkillet/PriceCheckNepal.git
    cd price_check_np
    ```
 
-2. Install dependencies
-  ```bash
-  flutter pub get
-  ```
 
-3. Run the app:
-  ```bash
-  flutter run
-  ```
+###### 2. Install dependencies
+   ```bash
+   flutter pub get
+   ```
+
+
+###### 3. Run the app:
+   ```bash
+   flutter run
+   ```
 
 
 
