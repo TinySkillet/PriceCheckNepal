@@ -53,7 +53,7 @@ flutter run
 
 The app is ideal for:
 
-- Students, professionals, and tech enthusiasts looking to purchase laptops, phones, and other gadgets.
+- Students, professionals, and tech enthusiasts looking to purchase laptops.
 - Users seeking the best deals across multiple e-commerce platforms in Nepal.
 
 **PriceCheck Nepal** currently compares laptop prices from **three** different e-commerce websites: **ITTI, Mudita** and **Yantra Nepal**. The data is scraped using our Python-based **WebScraper** and laptop prices are updated at the end of each week.
