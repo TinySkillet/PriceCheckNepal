@@ -2,6 +2,10 @@
 
 A Flutter application to help users compare prices of tech items across various e-commerce platforms in Nepal. PriceCheck Nepal is designed to make shopping easier, saving time and money by providing a centralized platform for price comparison.
 
+---
+
+Screenshots
+
 ![Home Page](app_images/ss1.png)
 ![Home Page](app_images/ss2.png)
 ![Home Page](app_images/ss3.png)
@@ -52,6 +56,6 @@ The app is ideal for:
 - Students, professionals, and tech enthusiasts looking to purchase laptops, phones, and other gadgets.
 - Users seeking the best deals across multiple e-commerce platforms in Nepal.
 
-_PriceCheck Nepal_ currently compares laptop prices from _three_ different e-commerce websites: _ITTI, Mudita_ and _Yantra Nepal_. The data is scraped using our Python-based _WebScraper_ and laptop prices are updated at the end of each week.
+**PriceCheck Nepal** currently compares laptop prices from **three** different e-commerce websites: **ITTI, Mudita** and **Yantra Nepal**. The data is scraped using our Python-based **WebScraper** and laptop prices are updated at the end of each week.
 
-We plan to upgrade the WebScraper by transitioning to _Go_ and incorporating goroutines in the future.
+We plan to upgrade the WebScraper by transitioning to **Go** and incorporating goroutines in the future.
